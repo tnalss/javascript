@@ -6,5 +6,3 @@
 * javascript 개요
 * javascript variables
 * javascript litrals
-
-설명을 위해 수정
