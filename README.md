@@ -2,7 +2,7 @@
 자바스크립트 문법 익히기
 
 
-##table of list
+## table of list
 * javascript 개요
 * javascript variables
 * javascript litrals
