@@ -16,6 +16,7 @@ let d = 't';    //문자열은 큰따옴표나 작은따옴표
 let e = false;
 let f = null;
 let g; //Undefined 변수는 선언했지만 값을 대입 할당하지 않은 상태
+console.log(`g의자료형 : ${typeof g}`);
 
 let h = [1,2,3]; //Array .......Array() method
 
