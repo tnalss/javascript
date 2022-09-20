@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제이쿼리</title>
+    <style>
+        div#displayArea{
+            width: 200px;
+            height: 200px;
+            border : 5px double #6699ff;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>제이쿼리를 이용한 태그제어(p.468)</h1>
+
+    <div id="displayArea">이곳의 내용 변경</div>
+    <button type = "button"> 표시</button>
+    
+    <!-- 제이쿼리 연결-->
+    <script src="lib/jquery-3.6.1.js"></script>
+    
+    <!-- 제이쿼리 시작형식    -->
+    <script>
+        //1, 국룰
+       // $(document).ready(function){
+            //표현식
+       // }
+        //2. 단축형식 
+        $(function(){
+            //script 말로풀어 설명하다. 기술하다, 서술하다, 묘사하다
+            //표시버튼 클릭하면 이미지 출력
+            $('button').click(function(){
+                $("#displayArea").html("<img src='https://picsum.photos/200/200' 'border='0'/>");
+            });
+        });
+        
+
+    </script>
+</body>
+</html>

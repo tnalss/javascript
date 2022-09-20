@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제이쿼리를 자바스크립트로 해결</title>
+    <style>
+        div#displayArea{
+            width: 200px;
+            height: 200px;
+            border : 5px double #6699ff;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>제이쿼리를 이용한 태그제어2- 자바스크립트로 하기</h1>
+
+    <div id="displayArea">이곳의 내용 변경</div>
+    <button type = "button"> 표시</button>
+    
+    <script>
+//표시버튼을 누르면, displayarea에 이미지를 표시한다.
+//$는 jquery에서 dom요소를 선택하는 기호
+        const Button = document.querySelector("button");
+        //버튼을 변수로 설정
+        Button.addEventListener("click",function(){
+        //버튼에 클릭을 했을때~
+            const displayArea = document.querySelector("#displayArea");
+        //div 구역을 찾아서~
+            displayArea.innerHTML = "<img src='https://picsum.photos/200/200' alt ='그림' '>";
+        //내용을 이미지로 바꿔라~
+        });
+
+</script>
+</body>
+</html>
