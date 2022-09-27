@@ -30,28 +30,47 @@
 <script>
 
 $(function(){
-    //사용자 정보 객체 --> 서버로 전송할 데이터
-    const userInfo={}
+//change 이벤트: 폼엘리먼트가 변경될때 발생
+$("#idx").change(function(e){
+    console.log("사용자 입력값 : " + e.target.value);
+    //console.log("change 이벤트 발생!")
+})
 
 
-    //전송시 form 새로고침을 금지시키려면?
-    $("#my-form").submit(function(e){
-        e.preventDefault();//새로고침 이벤트 처리 -> 새로고침을 취소함
-        userInfo.id = $("#idx").val();
-        userInfo.name = $("#name").val();
-        $("#idx").val("");
-        $("#name").val(null);
-    })
+$("#name").keypress(function(e){
+    let inputValue = e.target.value;
+    if (inputValue.length>10)
+        alert("10자 초과");
+    
+    console.log("사용자 입력값 " + e.target.value);
+})
 
-    $("input").focus(function(){
-    $(this).css("background-color", "#cccccc");
+
+
+
+
+//     //사용자 정보 객체 --> 서버로 전송할 데이터
+//     const userInfo={}
+
+
+//     //전송시 form 새로고침을 금지시키려면?
+//     $("#my-form").submit(function(e){
+//         e.preventDefault();//새로고침 이벤트 처리 -> 새로고침을 취소함
+//         userInfo.id = $("#idx").val();
+//         userInfo.name = $("#name").val();
+//         $("#idx").val("");
+//         $("#name").val(null);
+//     })
+
+//     $("input").focus(function(){
+//     $(this).css("background-color", "#cccccc");
     
 
 
- });
- $("input").blur(function(){
-    $(this).css("background-color", "#ffffff");
- });
+//  });
+//  $("input").blur(function(){
+//     $(this).css("background-color", "#ffffff");
+//  });
 
 
 })
