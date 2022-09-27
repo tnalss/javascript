@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document/Window 이벤트</title>
+    <script src="lib/jquery-3.6.1.js"></script>
+    <style>
+        article{
+
+            height : 5000px;
+        }
+        .fixed{
+            background-color: gold;
+            position: fixed;
+            top:0;
+            left:0;
+            width:100%;
+        }
+    </style>
+</head>
+<body>
+    <article>
+    <h1>도큐먼트/윈도우 이벤트p.488</h1>
+    <p>도큐먼트/윈도우 이벤트는 웹페이지의 로드가 발생되거나 완료되는 경우 또는 웹브라우저 창의 크기가 변경되거나 스크롤이 이동할때 발생 하며 이들의 이벤트는 다음과 같다.</p>
+    
+<h2>이벤트 종류</h2>
+<ul>
+    <li>ready : 페이지의 로드가 완료되면 발생</li>
+    <li>load : 페이지가 로드되면 발생</li>
+    <li>resize : 창의 크기를 변경하면 발생</li>
+    <li>scroll : 웹브라우저 창의 스크롤을 이동하면 발생</li>
+    <li>unload : 페이지가 언로드되면 발생</li>
+</ul>
+</article>
+<footer>
+    <div id="result"></div>
+
+</footer>
+
+<script>
+$(document).ready(function(){
+    $("#result").html("<img src='trans-plane.png' alt = 'plane' >");
+});
+$(window).resize(function(){
+    // console.log("resized");
+    let bodyWidth = $("body").width();
+    if(bodyWidth >= 700){
+        $("body").css("background-color","white");
+    } else{
+        $("body").css("background-color","gold");
+    }
+$(window).scroll(function(){
+    console.log("스크롤 발생");
+    var p = $("#result");
+    // console.log(parseInt(p.scrollTop()));
+    // console.log(p.offset().top);
+    // console.log($(window).scrollTop);
+    let sctop = parseInt($(window).scrollTop())
+    let ulOffsetTop = $("ul").offset().top;
+
+    if ( sctop > ulOffsetTop){
+        $("ul").addClass("fixed")
+    }else{
+        $("ul").removeClass("fixed")
+        }
+    })
+
+
+})
+
+</script>
+</body>
+</html>
