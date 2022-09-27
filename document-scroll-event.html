@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery scroll event example</title>
+    <script src="lib/jquery-3.6.1.js"></script>
+    <style>
+        html{font-size: 20px; scroll-behavior: smooth;}
+        .contents{
+            max-width: 90%;
+            margin: 0 auto;
+            display:flex;
+        }
+        .left{
+            flex:8;
+            display:flex;
+            flex-direction: column;
+        }
+        .right{
+            flex:2;
+        }
+        #gnb{
+            position:fixed;
+            top:5rem;
+            right:1rem;
+        }
+        h1{
+            margin: 0 0 5rem 0;
+        }
+        p{
+            height:800px;
+            background-color: tomato;
+        }
+        .pink{
+            background-color: pink;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="contents">
+        <div class="left">
+        <h1>scroll example</h1>
+            <h2>subject 1.</h2>
+            <p class="subject1">subject 1. Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam neque totam distinctio odit sequi repudiandae sapiente ab labore nisi. Eius in officiis quisquam nemo earum deleniti fugiat maiores aspernatur ipsam?</p>
+            <h2>subject 2.</h2>
+            <p class="subject2">subject 2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam neque totam distinctio odit sequi repudiandae sapiente ab labore nisi. Eius in officiis quisquam nemo earum deleniti fugiat maiores aspernatur ipsam?</p>
+            <h2>subject 3.</h2>
+            <p class="subject3">subject 3. Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam neque totam distinctio odit sequi repudiandae sapiente ab labore nisi. Eius in officiis quisquam nemo earum deleniti fugiat maiores aspernatur ipsam?</p>
+            <h2>subject 4.</h2>
+            <p class="subject4">subject 4. Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam neque totam distinctio odit sequi repudiandae sapiente ab labore nisi. Eius in officiis quisquam nemo earum deleniti fugiat maiores aspernatur ipsam?</p>
+            <h2>subject 5.</h2>
+            <p class="subject5">subject 5. Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam neque totam distinctio odit sequi repudiandae sapiente ab labore nisi. Eius in officiis quisquam nemo earum deleniti fugiat maiores aspernatur ipsam?</p>
+            <footer>
+                footer contents
+            </footer>  
+        </div>
+            <div class="right">
+                    <ul id="gnb">
+                        <li><a href="#">subject1</a></li>
+                        <li><a href="#">subject2</a></li>
+                        <li><a href="#">subject3</a></li>
+                        <li><a href="#">subject4</a></li>
+                        <li><a href="#">subject5</a></li>
+                    </ul>
+
+
+            </div>
+
+
+    </div>
+    <script>
+        $(function(){
+            
+            let sctop = $(this).scrollTop();
+            const sub1Top = parseInt($(".subject1").offset().top);
+            const sub2Top = parseInt($(".subject2").offset().top);
+            const sub3Top = parseInt($(".subject3").offset().top);
+            const sub4Top = parseInt($(".subject4").offset().top);
+            const sub5Top = parseInt($(".subject5").offset().top);
+            const pOffset=[27,1201,2131,3061,3990];
+
+            $(window).scroll(function(){
+                sctop = $(this).scrollTop();
+                //console.log(sctop);
+
+                if(sctop > sub1Top && sctop< sub2Top ){
+                    $("#gnb li").removeClass("pink");
+                    $("#gnb li:nth-child(1)").addClass("pink")
+             }else if (sctop > sub2Top&& sctop< sub3Top){
+                    $("#gnb li").removeClass("pink");
+                    $("#gnb li:nth-child(2)").addClass("pink")
+             }else if (sctop > sub3Top&& sctop< sub4Top){
+                    $("#gnb li").removeClass("pink");
+                    $("#gnb li:nth-child(3)").addClass("pink")
+             }else if (sctop >sub4Top&& sctop< sub5Top){
+                    $("#gnb li").removeClass("pink");
+                    $("#gnb li:nth-child(5)").addClass("pink")
+             }else if (sctop > sub5Top){
+                  $("#gnb li").removeClass("pink");
+                    $("#gnb li:nth-child(5)").addClass("pink")
+             }
+
+            //  console.log("좌표값 "+ parseInt($(".subject1").offset().top) ); 
+            // console.log("좌표값 "+ parseInt($(".subject2").offset().top) ); 
+            // console.log("좌표값 "+ parseInt($(".subject3").offset().top) ); 
+            // console.log("좌표값 "+ parseInt($(".subject4").offset().top) ); 
+            // console.log("좌표값 "+ parseInt($(".subject5").offset().top) ); 
+            })
+
+            
+            $("#gnb li a").click(function(e){
+                e.preventDefault;
+            })
+            $("#gnb li").click(function(e){
+                let el = $(this);
+                let index = el.index();
+                //console.log(index);
+                //console.log(pOffset[index]);
+                $(window).scrollTop(pOffset[index]-100);
+            })
+       
+    })
+
+
+    </script>
+</body>
+</html>
