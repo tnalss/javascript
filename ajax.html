@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>jquery ajax p.491</title>
+    <script src="lib/jquery-3.6.1.js"></script>
+    <!-- cf) jquery.slim : ajax, effect를 제외해서 용량을 가볍게 만든 버전이 있다. ajax를 할때는 슬림버전을 쓰면 안된다! -->
 </head>
 <body>
     <h1>jquery Ajax(Asynchronous javascript and XML)</h1>
@@ -34,5 +36,26 @@
         <label for="keyword">키워드</label>
         <input type="text" id="keyword" name="keyword">
     </form>
+
+    <h3>ajax 예제</h3>
+    <h4>.load예제  p.493</h4>
+    <button id ="pro">요청(=결과)</button>
+    <hr>
+    <div id="result"></div>  
+
+    <script>
+        $(function(){
+            // element.load(url, [,data] [,complete(responseText, textStatus, XMLHttpReques)])
+            // 요청 버튼을 클릭하면 , #result에 text,csv, html , xml, json등의 데이터를 호출!
+            $("#pro").click(function(){
+                $("#result").load("data/dataset-xml.xml",function(responseText,textStatus,XMLHttpRequest){
+                    console.log(XMLHttpRequest);
+                    //alert("데이터 전송 완료")
+                });
+            })
+        
+        })
+
+    </script>
 </body>
 </html>
