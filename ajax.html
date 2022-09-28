@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,10 +8,28 @@
     <title>jquery ajax p.491</title>
     <script src="lib/jquery-3.6.1.js"></script>
     <!-- cf) jquery.slim : ajax, effect를 제외해서 용량을 가볍게 만든 버전이 있다. ajax를 할때는 슬림버전을 쓰면 안된다! -->
+    <style>
+        .d-none {
+            display: none;
+        }
+
+        table,
+        th,
+        td {
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border-top: 1px solid;
+        }
+    </style>
 </head>
+
 <body>
     <h1>jquery Ajax(Asynchronous javascript and XML)</h1>
-    <p>jquery에서 Ajax("에이젝스" , "아작스" ) 기능을 구현한 메소드들을 사용해서 서버로부터 TEXT, HTML 또는 JSON(javascript object notation: 자바스크립트 객체 표기법)
+    <p>jquery에서 Ajax("에이젝스" , "아작스" ) 기능을 구현한 메소드들을 사용해서 서버로부터 TEXT, HTML 또는 JSON(javascript object notation: 자바스크립트 객체
+        표기법)
         형태의 파일을 요청하고 응답할 수 있는 기능을 제공합니다.
     </p>
 
@@ -38,24 +57,57 @@
     </form>
 
     <h3>ajax 예제</h3>
-    <h4>.load예제  p.493</h4>
-    <button id ="pro">요청(=결과)</button>
+    <h4>.load예제 p.493</h4>
+    <button id="pro">요청(=결과)</button>
     <hr>
-    <div id="result"></div>  
-
+    <div id="result" class="d-none"></div>
+    <div id="table"></div>
     <script>
-        $(function(){
+        $(function () {
             // element.load(url, [,data] [,complete(responseText, textStatus, XMLHttpReques)])
             // 요청 버튼을 클릭하면 , #result에 text,csv, html , xml, json등의 데이터를 호출!
-            $("#pro").click(function(){
-                $("#result").load("data/dataset-xml.xml",function(responseText,textStatus,XMLHttpRequest){
-                    console.log(XMLHttpRequest);
+            $("#pro").click(function () {
+                $("#result").load("data/dataset.json", function (responseText, textStatus, XMLHttpRequest) {
                     //alert("데이터 전송 완료")
+                    //JSON:javascript Object Notation[자바스크립트 객체 표기법 (설명)]
+                    //Object to String : JSON.stringify() /Serialization [직렬화]
+                    //String to Object : JSON.parse() //deSerialization [역직렬화]
+                    //console.log(responseText); //역직렬화를 해볼까?
+                    const data = JSON.parse(responseText);
+
+                    let str = "<table id = \"member_list\"><caption align=\"center\">회원리스트</caption>"
+                    str += "<tr><th>번호</th><th>이름</th><th>이메일</th><th>성별</th><th>IP</th></tr>"
+
+                    for (let i = 0; i < data.length; i++) {
+
+                        let $id = data[i]["id"];
+                        let $email = data[i]["email"];
+                        let $gender = data[i]["gender"];
+                        let $ip = data[0]["ip_address"];
+                        let $name = data[i]["first_name"] + " " + data[i]["last_name"];
+
+                        str += "<td>" + $id + "</td>";
+                        str += "<td>" + $name + "</td>";
+                        str += "<td>" + $email + "</td>";
+                        str += "<td>" + $gender + "</td>";
+                        str += "<td>" + $ip + "</td>";
+                        str += "<td>" + $id + "</td>";
+                        str += "</tr>"
+                    }
+                    str += "</table>"
+                    // let i =0;
+                    // while(i<1000){
+                    //     console.log(data[i]["id"]+","+ data[i]["first_name"]+","+ data[i]["last_name"]+","+ data[i]["email"]+","+ data[i]["gender"]+","+data[0]["ip_address"]);
+                    //     i++;
+                    // }
+
+                    $("#table").html(str);
                 });
             })
-        
+
         })
 
     </script>
 </body>
+
 </html>
